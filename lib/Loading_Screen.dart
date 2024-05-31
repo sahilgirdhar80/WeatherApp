@@ -43,12 +43,11 @@ class _LoadingScreenState extends State<LoadingScreen> {
     }
 
     try {
-      Position position = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.high);
+      Position? position = await Geolocator.getLastKnownPosition();
 
       setState(() {
         locationMessage =
-            'Location: ${position.latitude}, ${position.longitude}';
+            'Location: ${position?.latitude}, ${position?.longitude}';
       });
     } catch (e) {
       setState(() {
